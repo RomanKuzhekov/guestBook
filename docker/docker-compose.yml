@@ -1,0 +1,42 @@
+version: '3.3'
+
+services:
+  web:
+    hostname: web
+    container_name: web
+    build:
+      context: ./
+      dockerfile: web.Dockerfile
+    volumes:
+      - ../:/var/www/html
+      - ./php/tmp:/tmp
+    environment:
+      - PHP_IDE_CONFIG=serverName=Test
+    ports:
+      - '80:80'
+
+  db:
+    hostname: db
+    container_name: db
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+    volumes:
+      - ./data:/var/lib/mysql
+      - ./dump:/tmp/dump
+    ports:
+      - 6033:3306
+
+  pma:
+    hostname: pma
+    container_name: pma
+    image: phpmyadmin
+    ports:
+      - 81:80
+    extra_hosts:
+      - "pma:127.0.0.1"
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOST=db
+      - PMA_USER=root
+      - PMA_PASSWORD=root
