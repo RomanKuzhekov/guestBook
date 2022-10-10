@@ -2,7 +2,7 @@
 
 namespace frontend\controllers;
 
-use frontend\models\GuestbookForm;
+use frontend\models\Guestbook;
 use frontend\models\ResendVerificationEmailForm;
 use frontend\models\VerifyEmailForm;
 use Yii;
@@ -76,16 +76,13 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-
-
-        $model = new GuestbookForm();
+        $model = new Guestbook();
         if ($model->load(Yii::$app->request->post())) {
-
             if ($model->validate()) {
                 //Сохраняем в БД и выводим сообщение
-
-                Yii::$app->session->setFlash('success', 'Отзыв успешно добавлен!');
-
+                if ($model->save()) {
+                    Yii::$app->session->setFlash('success', 'Отзыв успешно добавлен!');
+                }
                 return $this->refresh();
             } else {
                 Yii::$app->session->setFlash('error', 'Не корректно заполнили поля!');

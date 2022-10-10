@@ -2,19 +2,16 @@
 
 namespace frontend\models;
 
-use yii\base\Model;
+use yii\db\ActiveRecord;
 
-class GuestbookForm extends Model
+class Guestbook extends ActiveRecord
 {
-    public $name;
-    public $text;
-    public $date;
-
     public function rules()
     {
         return [
-            [['name', 'text', 'date'], 'required'],
-            ['text', 'trim'],
+            [['name', 'text'], 'required', 'message' => 'Заполните поле'],
+            [['name'], 'string', 'max' => 100],
+            [['name', 'text'], 'trim'],
         ];
     }
 
@@ -23,7 +20,6 @@ class GuestbookForm extends Model
         return [
             'name' => 'Имя',
             'text' => 'Текст',
-            'date' => 'Дата',
         ];
     }
 }
