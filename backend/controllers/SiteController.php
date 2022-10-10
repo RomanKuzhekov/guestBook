@@ -3,6 +3,7 @@
 namespace backend\controllers;
 
 use backend\models\SignupForm;
+use backend\models\GuestbookSearch;
 use common\models\LoginForm;
 use common\models\User;
 use Yii;
@@ -42,13 +43,21 @@ class SiteController extends Controller
     }
 
     /**
-     * Displays homepage.
+     * Список отзывов
      *
      * @return string
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $searchModel = new GuestbookSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        $layout = '/admin';
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**

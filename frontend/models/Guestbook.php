@@ -6,6 +6,11 @@ use yii\db\ActiveRecord;
 
 class Guestbook extends ActiveRecord
 {
+    public static function tableName()
+    {
+        return 'guestbook';
+    }
+
     public function rules()
     {
         return [
@@ -20,6 +25,8 @@ class Guestbook extends ActiveRecord
         return [
             'name' => 'Имя',
             'text' => 'Текст',
+            'date_created' => 'Дата создания',
+            'active' => 'Модерация',
         ];
     }
 }

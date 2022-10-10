@@ -1,3 +1,7 @@
+body {
+    font-size: 16px;
+}
+
 main > .container {
     padding: 70px 15px 20px;
 }
@@ -89,7 +93,14 @@ a.desc:after {
     outline: none;
 }
 
-.navbar .navbar-brand {
-    color: #ccc;
+.datepickerbutton .glyphicon-calendar {
+    margin-left: -5px;
+}
+
+.form-control {
     font-size: 16px;
+}
+
+li.nav-item {
+    margin-right: 10px;
 }
