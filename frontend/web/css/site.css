@@ -101,3 +101,8 @@ a.desc:after {
 {
     text-decoration: none;
 }
+
+div.required label.form-label:after {
+    content: " *";
+    color: red;
+}
