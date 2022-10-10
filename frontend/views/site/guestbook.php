@@ -33,7 +33,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <? endif; ?>
 
             <hr>
-
+            <div class="alert-success alert alert-dismissible hidden" role="alert"></div>
             <div class="col-lg-5">
                 <h4>Форма добавления отзывов:</h4>
                 <?php $form = ActiveForm::begin(['id' => 'guestbook-form']); ?>
@@ -51,3 +51,26 @@ $this->params['breadcrumbs'][] = $this->title;
         </div>
     </div>
 </div>
+
+<?php
+$js = <<<JS
+    // Форма по аяксу
+    $('#guestbook-form').on('beforeSubmit', function() {
+       var data = $(this).serialize();
+        $.ajax({
+            url: '/site/index',
+            type: 'POST',
+            data: data,
+            success: function(res) {
+                $('#guestbook-form').trigger("reset");
+                $('.guestbook-container .alert-success').prepend(res).show().delay(5000).slideUp(300);
+            },
+            error: function(){
+                alert('Произошла ошибка, обновите страницу и попробуйте еще раз!');
+            }
+        });
+        return false;
+    });
+JS;
+$this->registerJs($js);
+?>

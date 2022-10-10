@@ -122,4 +122,6 @@ div.required label.form-label:after {
 .guestbook-container .pagination li.active a {
     color: #000;
 }
-
+.guestbook-container .hidden {
+    display: none;
+}

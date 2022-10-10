@@ -79,20 +79,18 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $model = new Guestbook();
-        $query = Guestbook::find()->orderBy('id DESC');
+        $query = Guestbook::find()->orderBy('id DESC')->where('active=1'); //Выводим только отмодерированные отзывы
         $pages = new \yii\data\Pagination(['totalCount'=>$query->count(), 'pageSize' => self::PAGINATION, 'pageSizeParam'=>false, 'forcePageParam'=>false]);
         $posts = $query->offset($pages->offset)->limit($pages->limit)->all();
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->validate()) {
-                //Сохраняем в БД и выводим сообщение
-                if ($model->save()) {
-                    Yii::$app->session->setFlash('success', 'Отзыв успешно добавлен!');
-                }
-                return $this->refresh();
+        if (\Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            if ($model->validate() && $model->save()) { //Сохраняем в БД и выводим сообщение
+                $message = 'Ваш отзыв был добавлен, после модерации он появится на сайте.';
             } else {
-                Yii::$app->session->setFlash('error', 'Не корректно заполнили поля!');
+                $message ='Не корректно заполнили поля!';
             }
+
+            return $message;
         }
 
         return $this->render('guestbook', [
@@ -124,6 +122,7 @@ class SiteController extends Controller
             'model' => $model,
         ]);
     }
+
 
     /**
      * Logs out the current user.
