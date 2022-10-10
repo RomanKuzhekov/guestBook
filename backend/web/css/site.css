@@ -88,3 +88,8 @@ a.desc:after {
 .nav > li > form > button.logout:focus {
     outline: none;
 }
+
+.navbar .navbar-brand {
+    color: #ccc;
+    font-size: 16px;
+}
