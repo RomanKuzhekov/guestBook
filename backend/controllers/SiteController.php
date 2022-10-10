@@ -145,6 +145,7 @@ class SiteController extends Controller
             $user = new User();
             $user->username = $model->username;
             $user->password = \Yii::$app->security->generatePasswordHash($model->password);
+            $user->role = $model->role;
             if($user->save()){
                 return $this->goHome();
             }

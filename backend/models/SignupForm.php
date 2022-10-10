@@ -9,10 +9,12 @@ class SignupForm extends Model
 {
     public $username;
     public $password;
+    public $role;
 
     public function rules() {
         return [
             [['username', 'password'], 'required', 'message' => 'Заполните поле'],
+            ['role', 'string'],
             ['username', 'unique', 'targetClass' => User::class,  'message' => 'Этот логин уже занят'],
         ];
     }
@@ -21,6 +23,7 @@ class SignupForm extends Model
         return [
             'username' => 'Логин',
             'password' => 'Пароль',
+            'role' => 'Роль',
         ];
     }
 }

@@ -4,11 +4,13 @@
 
 use yii\helpers\Html;
 use yii\bootstrap5\ActiveForm;
-?>
 
-<?php $form = ActiveForm::begin() ?>
-<?= $form->field($model, 'username') ?>
-<?= $form->field($model, 'password')->passwordInput() ?>
+$this->title = 'Вход в админку';
+
+$form = ActiveForm::begin() ?>
+    <?= $form->field($model, 'username') ?>
+    <?= $form->field($model, 'password')->passwordInput() ?>
+    <p><?= $form->field($model, 'role')->dropdownList(['user'=>'Пользователь', 'moderator'=>'Модератор', 'admin'=>'Админ']) ?></p>
     <div class="form-group">
         <div>
             <?= Html::submitButton('Регистрация', ['class' => 'btn btn-success']) ?>
