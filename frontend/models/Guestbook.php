@@ -17,6 +17,7 @@ class Guestbook extends ActiveRecord
             [['name', 'text'], 'required', 'message' => 'Заполните поле'],
             [['name'], 'string', 'max' => 100],
             [['name', 'text'], 'trim'],
+            [ 'active', 'integer'],
         ];
     }
 

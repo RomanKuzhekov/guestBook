@@ -11,7 +11,8 @@ class GuestbookSearch extends Guestbook
     {
         return [
             [['name', 'text'], 'string'],
-            [['date_created', 'active'], 'safe']
+            ['active', 'integer'],
+            ['date_created', 'safe'],
         ];
     }
 
@@ -41,6 +42,7 @@ class GuestbookSearch extends Guestbook
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'date_created', $this->date_created])
+            ->andFilterWhere(['=', 'active', $this->active])
             ->andFilterWhere(['like', 'text', $this->text]);
 
         return $dataProvider;
