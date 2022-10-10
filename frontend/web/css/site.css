@@ -106,3 +106,20 @@ div.required label.form-label:after {
     content: " *";
     color: red;
 }
+
+.guestbook-container .guest-comment {
+    border: 1px dotted #ccc;
+    padding: 5px;
+    margin-bottom: 10px;
+}
+.guestbook-container .guest-comment .date {
+    float: right;
+    font-style: italic;
+}
+.guestbook-container .pagination li {
+    padding: 10px;
+}
+.guestbook-container .pagination li.active a {
+    color: #000;
+}
+

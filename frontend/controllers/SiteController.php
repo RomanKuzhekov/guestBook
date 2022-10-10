@@ -22,6 +22,8 @@ use frontend\models\ContactForm;
  */
 class SiteController extends Controller
 {
+    const PAGINATION = 2;
+
     /**
      * {@inheritdoc}
      */
@@ -77,6 +79,10 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $model = new Guestbook();
+        $query = Guestbook::find()->orderBy('id DESC');
+        $pages = new \yii\data\Pagination(['totalCount'=>$query->count(), 'pageSize' => self::PAGINATION, 'pageSizeParam'=>false, 'forcePageParam'=>false]);
+        $posts = $query->offset($pages->offset)->limit($pages->limit)->all();
+
         if ($model->load(Yii::$app->request->post())) {
             if ($model->validate()) {
                 //Сохраняем в БД и выводим сообщение
@@ -91,6 +97,8 @@ class SiteController extends Controller
 
         return $this->render('guestbook', [
             'model' => $model,
+            'pages' => $pages,
+            'posts' => $posts,
         ]);
     }
 
