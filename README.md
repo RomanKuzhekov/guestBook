@@ -2,59 +2,56 @@
     <a href="https://github.com/yiisoft" target="_blank">
         <img src="https://avatars0.githubusercontent.com/u/993323" height="100px">
     </a>
-    <h1 align="center">Yii 2 Advanced Project Template</h1>
+    <h1 align="center">Гостевая книга</h1>
     <br>
 </p>
 
-Yii 2 Advanced Project Template is a skeleton [Yii 2](http://www.yiiframework.com/) application best for
-developing complex Web applications with multiple tiers.
+<h4>Состоит из:</h4>
+<p><b>Пользовательской части:</b> вывод отзывов, пагинация по 2 отзыва на страницу, форма приема отзывов работающая через AJAX.</p>
+<p>
+<b>Административной части:</b> авторизация, список отзывов с фильтрацией по всем полям, страница просмотра/редактирования/удаления отзыва, ограничение функционала по ролям. </p>
 
-The template includes three tiers: front end, back end, and console, each of which
-is a separate Yii application.
+<h3>Установка</h3>
 
-The template is designed to work in a team development environment. It supports
-deploying the application in different environments.
+<p>Склонировать проект: git clone https://github.com/RomanKuzhekov/test-marketing.git</p>
 
-Documentation is at [docs/guide/README.md](docs/guide/README.md).
+<h5>Запустить в терминале:</h5>
+<p>git checkout dev</p>
+<p>composer install</p>
+<p>php init</p>
+<p>Создать базу данных и прописать настройки в файле common/config/main-local.php</p>
 
-[![Latest Stable Version](https://img.shields.io/packagist/v/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![Total Downloads](https://img.shields.io/packagist/dt/yiisoft/yii2-app-advanced.svg)](https://packagist.org/packages/yiisoft/yii2-app-advanced)
-[![build](https://github.com/yiisoft/yii2-app-advanced/workflows/build/badge.svg)](https://github.com/yiisoft/yii2-app-advanced/actions?query=workflow%3Abuild)
+<h5>Запустить в терминале:</h5>
+<p>php yii migrate</p>
+<p>composer update nkovacs/yii2-datetimepicker</p>
 
-DIRECTORY STRUCTURE
--------------------
+<h5>Зарегистрировать пользователя в админке, выбрав нужную роль (/admin/?r=site/signup)</h5>
 
-```
-common
-    config/              contains shared configurations
-    mail/                contains view files for e-mails
-    models/              contains model classes used in both backend and frontend
-    tests/               contains tests for common classes    
-console
-    config/              contains console configurations
-    controllers/         contains console controllers (commands)
-    migrations/          contains database migrations
-    models/              contains console-specific model classes
-    runtime/             contains files generated during runtime
-backend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains backend configurations
-    controllers/         contains Web controller classes
-    models/              contains backend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for backend application    
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-frontend
-    assets/              contains application assets such as JavaScript and CSS
-    config/              contains frontend configurations
-    controllers/         contains Web controller classes
-    models/              contains frontend-specific model classes
-    runtime/             contains files generated during runtime
-    tests/               contains tests for frontend application
-    views/               contains view files for the Web application
-    web/                 contains the entry script and Web resources
-    widgets/             contains frontend widgets
-vendor/                  contains dependent 3rd-party packages
-environments/            contains environment-based overrides
-```
+<p>Админка доступна по адресу: /admin/</p>
+
+<h5>По желанию на сервере можно настроить хосты на папки:</h5>
+<p>..\frontend\web</p>
+<p>..\backend\web</p>
+
+<hr>
+<h3>Докер:</h3>
+<p>В папке docker запустить docker-compose up -d --build</p>
+
+<h4>Прописать в hosts</h4>
+<p>127.0.0.1  localhost</p>
+<p>127.0.0.1  localhost.back</p>
+<p>127.0.0.1  pma</p>
+
+<h4>Запустить докер:</h4>
+<p>docker-compose up -d</p>
+
+<h4>Остановить докер:</h4>
+<p>docker-compose stop</p>
+
+<h4>Доступны адреса в браузере:</h4>
+<p>http://localhost/</p>
+<p>http://localhost.back/</p>
+<p>http://pma:81/</p>
+
+<hr>
+<p>Ссылка на гитхаб (ветка dev) - https://github.com/RomanKuzhekov/test-marketing.git</p>
