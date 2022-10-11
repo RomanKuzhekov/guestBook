@@ -28,21 +28,26 @@ class SiteController extends Controller
                 'class' => AccessControl::class,
                 'rules' => [
                     [
-                        'actions' => ['login'],
+                        'actions' => ['login', 'signup'],
                         'allow' => true,
+                    ],
+                    [
+                        //Для обычных пользователей - запрещаем CRUD
+                        'actions' => ['view','update','delete'],
+                        'allow' => false,
+                        'matchCallback' => function () {
+                            return in_array(Yii::$app->user->identity->role, ['user']);
+                        },
                     ],
                     [
                         'allow' => true,
                         'roles' => ['@'],
                     ],
-                    [
-                        'actions' => ['signup'],
-                        'allow' => true,
-                    ],
                 ],
             ],
         ];
     }
+
 
     /**
      * Список отзывов

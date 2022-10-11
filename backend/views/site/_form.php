@@ -8,10 +8,15 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="pages-form">
-    <?php $form = ActiveForm::begin(); ?>
+    <?php $form = ActiveForm::begin();
 
-    <p><?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?></p>
-    <p><?= $form->field($model, 'text')->textarea() ?></p>
+    // Если Модератор - публикация отзывов, без возможности правки содержимого
+    $flagModerator = false;
+    if (Yii::$app->user->identity->role == 'moderator') {
+        $flagModerator = true;
+    } ?>
+    <p><?= $form->field($model, 'name')->textInput(['maxlength' => true, 'disabled' => $flagModerator]) ?></p>
+    <p><?= $form->field($model, 'text')->textarea(['disabled' => $flagModerator]) ?></p>
     <p><?= $form->field($model, 'active')->dropdownList(['0'=>'На модерации', '1'=>'Активно']) ?></p>
 
     <div class="form-group">

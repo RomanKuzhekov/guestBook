@@ -45,7 +45,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         return $active;
                     }
                 ],
-                ['class' => 'yii\grid\ActionColumn'],
+                ['class' => 'yii\grid\ActionColumn', 'visible' => Yii::$app->user->identity->role !== 'user'],
             ],
         ]); ?>
     <?php Pjax::end(); ?>
