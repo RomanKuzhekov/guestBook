@@ -35,7 +35,7 @@
 
 <hr>
 <h3>Докер:</h3>
-<p>В папке docker запустить docker-compose up -d --build</p>
+<p>В папке docker нужно запустить docker-compose up -d --build</p>
 
 <h4>Прописать в hosts</h4>
 <p>127.0.0.1  localhost</p>
