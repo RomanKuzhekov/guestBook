@@ -13,7 +13,7 @@
 
 <h3>Установка</h3>
 
-<p>Склонировать проект: git clone https://github.com/RomanKuzhekov/test-marketing.git</p>
+<p>Склонировать проект: git clone https://github.com/RomanKuzhekov/guestBook.git</p>
 
 <h5>Запустить в терминале:</h5>
 <p>git checkout dev</p>
